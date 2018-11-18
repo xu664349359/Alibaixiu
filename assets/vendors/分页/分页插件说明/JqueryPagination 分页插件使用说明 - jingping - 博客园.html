@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://www.cnblogs.com/jingping/p/3925976.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JqueryPagination 分页插件使用说明 - jingping - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./JqueryPagination 分页插件使用说明 - jingping - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./JqueryPagination 分页插件使用说明 - jingping - 博客园_files/bundle-CodingLife.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./JqueryPagination 分页插件使用说明 - jingping - 博客园_files/bundle-CodingLife-mobile.css">
+
+
+
+<style>
+    .params_table td{
+        width: 80px;
+        text-align: left;
+    }
+
+    #topics{
+        width: 1200px;
+    }
+
+</style>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+<!--done-->
+
+<h2>分页</h2>
+
+
+
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/jingping/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/jingping">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/jingping/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/jingping/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/jingping/p/3925976.html">JqueryPagination 分页插件使用说明</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>　　JqueryPagination是个简单轻量级的分页插件，使用起来很容易，只要初始化一个实例，并设置总数量、翻页回调函数、其它参数就可以实现无刷新分页功能了</p>
+<p>　　</p>
+<p>1 首先引入相关js文件：</p>
+<div class="cnblogs_code">
+<pre>&lt;link href="Scripts/pagination.css" rel="stylesheet" type="text/css" /&gt;
+&lt;script src="../Scripts/jquery-1.7.2.min.js" type="text/javascript"&gt;&lt;/script&gt; // 个人发现插件对1.4版不支持
+&lt;script src="Scripts/jquery.pagination.js" type="text/javascript"&gt;&lt;/script&gt;</pre>
+</div>
+<p>&nbsp;</p>
+<p>2 编写html代码，在页面添加一个div</p>
+<div class="cnblogs_code">
+<pre> <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="pagination"</span><span style="color: #0000ff;">&gt;</span>
+ <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>添加javascript 代码，实例化分页插件</p>
+<div class="cnblogs_code" style="text-align: left;"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JqueryPagination 分页插件使用说明 - jingping - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre> $(<span style="color: #0000ff;">function</span><span style="color: #000000;"> () {
+　　　　var pageCount=50;  //分页总数量<br>      //&nbsp;$("#pagination").pagination(</span>pageCount<span>); //简单初始化方法</span></pre>
+<pre><em><span style="color: #000000;"><br>
+        $(</span>"#pagination").pagination(pageCount<span style="color: #000000;">,    //分布总数量，必须参数<br>                 {</span></em></pre>
+<pre>　　　　　　　　　　callback: PageCallback,  //PageCallback() 为翻页调用次函数。
+                  prev_text: "« 上一页",
+                  next_text: "下一页 »",
+                  items_per_page:10,
+                  num_edge_entries: 2,       //两侧首尾分页条目数
+                  num_display_entries: 10,    //连续分页主体部分分页条目数
+                  current_page: 0,   //当前页索引<br>　　　　　　　　　　link_to: "?id=__id__"  //分页的js中会自动把"__id__"替换为当前的数。0<em><span>　<br>　　　</span><span> });</span></em></pre>
+<pre><em id="__mceDel"><em><span style="color: #000000;"><br> });<br><br>function </span></em>PageCallback(page_index,jq)<br>{<br>     $.ajax({   </em></pre>
+<pre><em id="__mceDel">                type: "POST",  
+                dataType: "text",  
+                url: '后台处理地址',      //提交到一般处理程序请求数据   
+                data: "pageIndex=" + (pageIndex) + "&amp;pageSize=" + pageSize,          //提交两个参数：pageIndex(页面索引)，pageSize(显示条数)           
+                success: function(data) {
+                           //后台服务返回数据，重新加载数据
+                        }  
+           }); </em></pre>
+<pre>}</pre>
+<pre><em id="__mceDel"></em></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JqueryPagination 分页插件使用说明 - jingping - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>4 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 插件pagination()方法参数</p>
+<table class="params_table" style="width: 918px; height: 390px; border: 1px solid #000000;" border="1" frame="border" cellspacing="1" cellpadding="0">
+<tbody>
+<tr><th scope="col">参数名</th><th scope="col">描述</th><th scope="col">参数值</th></tr>
+<tr>
+<td>maxentries</td>
+<td>总条目数</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 必选参数，整数</td>
+</tr>
+<tr>
+<td>items_per_page</td>
+<td>每页显示的条目数</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 可选参数，默认是10</td>
+</tr>
+<tr>
+<td>num_display_entries</td>
+<td>连续分页主体部分显示的分页条目数</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 可选参数，默认是10</td>
+</tr>
+<tr>
+<td>current_page</td>
+<td>当前选中的页面</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 可选参数，默认是0，表示第1页</td>
+</tr>
+<tr>
+<td>num_edge_entries</td>
+<td>两侧显示的首尾分页的条目数</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 可选参数，默认是0</td>
+</tr>
+<tr>
+<td>link_to</td>
+<td>分页的链接</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 字符串，可选参数，默认是"#"</td>
+</tr>
+<tr>
+<td>prev_text</td>
+<td>“前一页”分页按钮上显示的文字</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 字符串参数，可选，默认是"Prev"</td>
+</tr>
+<tr>
+<td>next_text</td>
+<td>“下一页”分页按钮上显示的文字</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 字符串参数，可选，默认是"Next"</td>
+</tr>
+<tr>
+<td>ellipse_text</td>
+<td>省略的页数用什么文字表示</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 可选字符串参数，默认是"…"</td>
+</tr>
+<tr>
+<td>prev_show_always</td>
+<td>是否显示“前一页”分页按钮</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 布尔型，可选参数，默认为true，即显示“前一页”按钮</td>
+</tr>
+<tr>
+<td>next_show_always</td>
+<td>是否显示“下一页”分页按钮</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;布尔型，可选参数，默认为true，即显示“下一页”按钮</td>
+</tr>
+<tr>
+<td>callback</td>
+<td>回调函数</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 当点击链接的时候此函数被调用，此函数接受两个参数，新一页的id和pagination容器（一个DOM元素）。如果回调函数返回false，则pagination事件停止执行</td>
+</tr>
+<tr>
+<td>load_first_page<br>&nbsp; &nbsp;<br>&nbsp; &nbsp;&nbsp;</td>
+<td>初始化时是否执行回调函数</td>
+<td>&nbsp;如果为true则当插件初始化时回调函数被执行。如果你通过ajax来显示内容，那么在初始化分页插件时应把它设置为false;默认值: true</td>
+
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>5 插件其它方法</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JqueryPagination 分页插件使用说明 - jingping - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">    // 自定义事件触发分页
+</span>
+    <span style="color: #008000;">//</span><span style="color: #008000;"> 跳到第3页 </span>
+    $("#pagination").trigger('setPage', [2<span style="color: #000000;">]);
+    </span><span style="color: #008000;">//</span><span style="color: #008000;"> 下一页</span>
+    $("#pagination").trigger('nextPage'<span style="color: #000000;">);
+    </span><span style="color: #008000;">//</span><span style="color: #008000;"> 上一页</span>
+    $("#pagination").trigger('prevPage');</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JqueryPagination 分页插件使用说明 - jingping - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>后台代码就贴出来了，一般是返回json格式的数据到前面处理。</p>
+<p>总结：JqueryPagination使用简单，只需要设置参数和回调函数就可以用，通过回调函数处理 翻页触发的事件，比较灵活。</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/jingping/category/605962.html" target="_blank">Jquery Plugin</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/jingping/tag/JqueryPagination/">JqueryPagination</a>, <a href="http://www.cnblogs.com/jingping/tag/Jquery/">Jquery</a>, <a href="http://www.cnblogs.com/jingping/tag/Pagination/">Pagination</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(3925976,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;ea2dffbb-e5e1-df11-ac81-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./JqueryPagination 分页插件使用说明 - jingping - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./JqueryPagination 分页插件使用说明 - jingping - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/jingping/" target="_blank"><img src="./JqueryPagination 分页插件使用说明 - jingping - 博客园_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/jingping/">jingping</a><br>
+            <a href="http://home.cnblogs.com/u/jingping/followees">关注 - 63</a><br>
+            <a href="http://home.cnblogs.com/u/jingping/followers">粉丝 - 2</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;ea2dffbb-e5e1-df11-ac81-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(3925976,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(3925976,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/jingping/p/3885388.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/jingping/p/3885388.html" title="发布于2014-08-01 16:49">Ajax请求ashx 返回 json 格式数据常见问题</a><br><a href="http://www.cnblogs.com/jingping/p/3927276.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/jingping/p/3927276.html" title="发布于2014-08-21 15:19">Newtonsoft.Json 基本用法</a><br></div>
+</div>
+
+
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+
+	
+			
+<!--done-->
+
+
+			
+
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/jingping/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/jingping/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/jingping/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/jingping/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/jingping/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/jingping/p/3925976.html#3501011">1. Re:JqueryPagination 分页插件使用说明</a></li>
+        <li class="recent_c
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>
